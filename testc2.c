@@ -2,8 +2,12 @@
 #include <stdio.h>
 #include "omp.h"
 
-int maparray(int *bounds,int numOfDimensions)
-{
+struct MultiDimArray{
+	int numOfElements;
+	int *pointer;
+};
+
+struct MultiDimArray maparray(int *bounds,int numOfDimensions){
 	
 	int numOfElements = 1;
 		
@@ -11,17 +15,17 @@ int maparray(int *bounds,int numOfDimensions)
 	{
 		numOfElements =numOfElements*bounds[i];
 	}
-
+	struct MultiDimArray arr;
+	arr.numOfElements = numOfElements;
 	//printf("\nNumber of elements = %d \n", numOfElements);
-	return numOfElements;
-
-	
+	arr.pointer = (int*)malloc(numOfElements*sizeof(int));//Allocate memory for an array of the given size
+	for (int i=0;i<numOfElements;i++)//Create a one-dimensional array to represent the multidimensional one. We will figure out how to 						interpret this later on.
+	{
+		arr.pointer[i]=0;
+		//printf("%d",arr[i]);
+	}
+	return arr;
 }
-
-
-
-
-
 
 int main() {
 //#pragma omp parallel num_threads(1)
@@ -55,18 +59,19 @@ int main() {
 	
 
 
-	int sizeOfArray = maparray((int *)bounds,numOfDimensions);//Get the size of the array
-	int *arr = (int*)malloc(sizeOfArray*sizeof(int));//Allocate memory for an array of the given size
-
-	
-
-	for (int i=0;i<sizeOfArray;i++)//Create a one-dimensional array to represent the multidimensional one. 						We will figure out how to interpret this later on.
+	//Create a one dimensional representation of the array given the no. of dimensions and bounds.
+	struct MultiDimArray A;
+	A = maparray((int *)bounds,numOfDimensions);//Create an array of the given dimensions and size
+	int size = A.numOfElements;
+/*
+	printf("\nSize of Array = %d \n",size);
+	for (int i=0;i<size;i++)//Test that the correct array is created
 	{
-		arr[i]=0;
-		//printf("%d",arr[i]);
+		printf("%d",A.pointer[i]);
 	}
-	//printf("\n");
-	free(arr);			//Free the memory allocated for the array. This is necessary in order to 						avoid a memory leak.
+	printf("\n");
+*/
+	free(A.pointer);//Free the memory allocated for the array. This is necessary in order to avoid a memory leak.
 //}
 
 }
