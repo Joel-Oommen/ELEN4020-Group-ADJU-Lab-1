@@ -12,40 +12,43 @@ void iterateArray(int* Arr, int* dimensions, int* indices, int numOfD);
 
 void printIndices(int* Arr, int* dimensions, int numOfD, int size)
 {
-
-	int *indices;
-	time_t time1;
-
-	srand((unsigned) time(&time1));
-
-	int coordinate1D = rand()%size ;
-	
-	printf("%s %d\n","Value: ", Arr[coordinate1D]);
-
-	int Arr2[numOfD];
-
-    	for(int i = 0; i < numOfD; i++)
-    	{
-        	Arr2[i] = 1;
-   	}
-
-    	for(int i = numOfD - 1; i >= 1; i--)
-    	{
-        	Arr2[i - 1] = Arr2[i]*dimensions[i];
-    	}
-
-	for (int i = 0; i < numOfD -1;i++)
+	int endIndex = size;
+	endIndex *= 0.05;
+	for(int i=0;i<endIndex;i++)
 	{
-		indices[i] = (int)floor(coordinate1D/Arr2[i]);
-		coordinate1D = coordinate1D - indices[i]*Arr2[i];
-	}
+		int indices[numOfD];
+		time_t time1;
 
-	printf("Coordinates: ");
-	for (int i = 0; i < numOfD-1 ; i++)
-	{
-		printf("%d %s \n" , indices[i], ", ");
+		srand((unsigned) time(&time1));
+
+		int coordinate1D = rand()%size ;
+		printf("Value: ");
+		printf("%d \n", Arr[coordinate1D]);
+
+		int Arr2[numOfD];
+
+	    	for(int i = 0; i < numOfD; i++)
+	    	{
+			Arr2[i] = 1;
+	   	}
+
+	    	for(int i = numOfD - 1; i >= 1; i--)
+	    	{
+			Arr2[i - 1] = Arr2[i]*dimensions[i];
+	    	}
+
+		for (int i = 0; i < numOfD -1;i++)
+		{
+			indices[i] = (int)floor(coordinate1D/Arr2[i]);
+			coordinate1D = coordinate1D - indices[i]*Arr2[i];
+		}
+
+		printf("Coordinates: ");
+		for (int i = 0; i < numOfD ; i++)
+		{
+			printf("%d %s " , indices[i], ",");
+		}
 	}
-	
 	
 	
 }
