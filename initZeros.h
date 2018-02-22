@@ -1,26 +1,22 @@
 #ifndef INITZEROS_H
 #define INITZEROS_H
 
-struct flatArray{//A structure to help represent an array.
-	int numOfElements;
-	int *pointer;
-};
-
-struct flatArray initZeros(int *bounds,int numOfDimensions){//Creates a one dimensional array to represent a k-dimensional array, and sets all the values to zero.
-	
-	int numOfElements = 1;
-		
+int getArraySize(int *bounds,int numOfDimensions)
+{
+	int numOfElements = 1;	
 	for (int i=0;i<numOfDimensions;i++)
 	{
-		numOfElements =numOfElements*bounds[i];//Calculate the total number of elements in the array
+		numOfElements =numOfElements*bounds[i];
 	}
-	struct flatArray arr;
-	arr.numOfElements = numOfElements;
-	arr.pointer = (int*)malloc(numOfElements*sizeof(int));//Allocate memory for an array of the given size
-	for (int i=0;i<numOfElements;i++)//Create a one-dimensional array to represent the multidimensional one.
+	return numOfElements;	
+}
+
+void initZeros(int *Arr, int *bounds, int numOfDimensions)
+{
+	int sizeOfArray = getArraySize(bounds,numOfDimensions);
+	for (int i=0;i<sizeOfArray;i++)//Create a one-dimensional array to represent the multidimensional one.
 	{
-		arr.pointer[i]=0;
+		Arr[i]=0;
 	}
-	return arr;
 }
 #endif
