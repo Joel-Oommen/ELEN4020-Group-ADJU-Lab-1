@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "initZeros.h"
 #include "setOnes.h"
+#include "printIndices.h"
 
 int main() {
 	printf("Enter the dimensions of your matrix. Eg. If 3D type 3 if 10D type 10\n");
@@ -25,13 +26,9 @@ int main() {
 	int sizeOfArray = getArraySize((int *)bounds,numOfDimensions);//Get the size of the array
 	int *arr = (int*)malloc(sizeOfArray*sizeof(int));//Allocate memory for an array of the given size
 	initZeros(arr,(int *)bounds,numOfDimensions);//Initialize array to zeros
+	printf("initZeros done.\n");
 	setOnes(arr,(int *)bounds,numOfDimensions);//Set 10% of the array to one
-/*
-	for (int i=0;i<sizeOfArray;i++)//Create a one-dimensional array to represent the multidimensional one.
-	{
-		printf("%d",arr[i]);
-	}
-	printf("\n");
-*/
+	printf("setOnes done.\n");
+	printIndices(arr,(int *)bounds,numOfDimensions,sizeOfArray);//Print the indices and values of 5% of the array
 	free(arr);//Free the memory allocated for the array. This is necessary in order to avoid a memory leak.
 }
