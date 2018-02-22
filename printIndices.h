@@ -12,18 +12,16 @@ void iterateArray(int* Arr, int* dimensions, int* indices, int numOfD);
 
 void printIndices(int* Arr, int* dimensions, int numOfD, int size)
 {
+	time_t time1;
+	srand((unsigned) time(&time1));
 	int endIndex = size;
 	endIndex *= 0.05;
+	int indices[numOfD];
 	for(int i=0;i<endIndex;i++)
 	{
-		int indices[numOfD];
-		time_t time1;
-
-		srand((unsigned) time(&time1));
-
 		int coordinate1D = rand()%size ;
 		printf("Value: ");
-		printf("%d \n", Arr[coordinate1D]);
+		printf("%d ", Arr[coordinate1D]);
 
 		int Arr2[numOfD];
 
@@ -48,6 +46,7 @@ void printIndices(int* Arr, int* dimensions, int numOfD, int size)
 		{
 			printf("%d %s " , indices[i], ",");
 		}
+		printf("\n");
 	}
 	
 	

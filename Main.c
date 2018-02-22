@@ -22,13 +22,11 @@ int main() {
 		bounds[counter]=inNum;
 		counter++;
 	}
-
 	int sizeOfArray = getArraySize((int *)bounds,numOfDimensions);//Get the size of the array
 	int *arr = (int*)malloc(sizeOfArray*sizeof(int));//Allocate memory for an array of the given size
 	initZeros(arr,(int *)bounds,numOfDimensions);//Initialize array to zeros
-	printf("initZeros done.\n");
 	setOnes(arr,(int *)bounds,numOfDimensions);//Set 10% of the array to one
-	printf("setOnes done.\n");
 	printIndices(arr,(int *)bounds,numOfDimensions,sizeOfArray);//Print the indices and values of 5% of the array
+	printf("\n");
 	free(arr);//Free the memory allocated for the array. This is necessary in order to avoid a memory leak.
 }
