@@ -6,14 +6,16 @@
 #include "omp.h"
 #include <time.h>
 #include <math.h>
+#include "initZeros.h"
 
 void setValue(int* Arr, int* dimensions, int* indices, int numOfD, int value);
 void iterateArray(int* Arr, int* dimensions, int* indices, int numOfD);
 
-void printIndices(int* Arr, int* dimensions, int numOfD, int size)
+void printIndices(int* Arr, int* dimensions, int numOfD)
 {
 	time_t time1;
 	srand((unsigned) time(&time1));
+	int size = getArraySize(dimensions,numOfD);
 	int endIndex = size;
 	endIndex *= 0.05;
 	int indices[numOfD];
@@ -21,7 +23,7 @@ void printIndices(int* Arr, int* dimensions, int numOfD, int size)
 	{
 		int coordinate1D = rand()%size ;
 		printf("Value: ");
-		printf("%d ", Arr[coordinate1D]);
+		printf("%d \t", Arr[coordinate1D]);
 
 		int Arr2[numOfD];
 
@@ -48,7 +50,7 @@ void printIndices(int* Arr, int* dimensions, int numOfD, int size)
 		}
 		printf("\n");
 	}
-	
+	printf("\n");
 	
 }
 
