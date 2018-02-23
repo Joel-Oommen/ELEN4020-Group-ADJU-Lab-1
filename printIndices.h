@@ -37,7 +37,7 @@ void printIndices(int* Arr, int* dimensions, int numOfD)
 			Arr2[i - 1] = Arr2[i]*dimensions[i];
 	    	}
 
-		for (int i = 0; i < numOfD -1;i++)
+		for (int i = 0; i < numOfD;i++)
 		{
 			indices[i] = (int)floor(coordinate1D/Arr2[i]);
 			coordinate1D = coordinate1D - indices[i]*Arr2[i];
