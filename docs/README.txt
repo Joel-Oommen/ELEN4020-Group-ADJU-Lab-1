@@ -1,4 +1,4 @@
-ELEN4020-Group-ADJU-Lab-1To access the repository containing Lab 1, go to:
+To access the repository containing Lab 1, go to:
 https://github.com/Joel-Oommen/ELEN4020-Group-ADJU-Lab-1
 
 Group:
